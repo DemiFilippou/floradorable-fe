@@ -33,6 +33,10 @@ button {
   margin-top: 5%;
 }
 
+button:disabled {
+  background-color: LightGray;
+}
+
 input[validationstate="error"] {
   border-bottom: 1px solid red;
 }

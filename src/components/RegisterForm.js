@@ -4,6 +4,8 @@ import { Button, HelpBlock } from 'react-bootstrap';
 import './LoginForm.css'
 import Api from '../api.js'
 import { Redirect } from 'react-router-dom'
+// TODO: actually tell user about validation errors.
+
 
 class RegisterForm extends React.Component {
   constructor(props) {
@@ -19,6 +21,10 @@ class RegisterForm extends React.Component {
       password_confirmation: '',
       redirect: false
     };
+  }
+
+  validateForm() {
+    return (this.state.name && this.state.email && this.state.password && this.state.password_confirmation); 
   }
 
   getValidationState() {
@@ -43,9 +49,10 @@ class RegisterForm extends React.Component {
   }
 
   register(e) {
-    if (this.state.password !== this.state.password_confirmation) {
-      // throw erroer
-    } else {
+    let validConfirmation = this.state.password === this.state.password_confirmation;
+    let validEmail = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(this.state.email);
+
+    if (validEmail && validConfirmation) {
       if (Api.register({ user: this.state })) {
         this.setState({redirect: true});
         console.log(this.state);
@@ -55,7 +62,7 @@ class RegisterForm extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to={{pathname: '/'}} />;
+      return <Redirect to={{pathname: '/home'}} />;
     }
     return (
       <form>
@@ -88,7 +95,7 @@ class RegisterForm extends React.Component {
           onChange={this.handleChange}
           validationState={this.getValidationState()}
         />
-        <Button onClick={this.register}>SIGN UP</Button>
+        <Button disabled={!this.validateForm()} onClick={this.register}>SIGN UP</Button>
       </form>
     );
   }

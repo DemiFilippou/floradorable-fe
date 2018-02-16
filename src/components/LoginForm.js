@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import './LoginForm.css'
 import Api from '../api.js'
 import { Redirect } from 'react-router-dom'
+// TODO: Tell user when login fails
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -39,7 +40,6 @@ class LoginForm extends React.Component {
   }
 
   async login(e) {
-    console.log(Api)
     let loginSuccess;
     try {
       loginSuccess = await Api.login({ user: this.state });
@@ -47,13 +47,14 @@ class LoginForm extends React.Component {
       console.log(err);
     }
     if (loginSuccess) {
+      console.log("Logged in");
       this.setState({redirect: true});
     }
   }
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to={{pathname: '/'}} />;
+      return <Redirect to={{pathname: '/home'}} />;
     }
     return (
       <form>
