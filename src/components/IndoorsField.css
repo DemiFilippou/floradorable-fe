@@ -1,0 +1,21 @@
+.indoor_outdoor {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10
+}
+
+.outdoors .indoors {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 2%;
+  width: 40%;
+}
+
+.choseIndoors .choseOutdoors {
+  padding: 5px;
+  border: 3px solid grey;
+  border-radius: 5px;
+}

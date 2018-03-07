@@ -60,7 +60,7 @@ export default class Api {
 
   /****************** User Plant functions ******************/
 
-  // gets all the users from the api
+  // gets all the user plants from the api
   static getUserPlants() {
     return new Promise(async (resolve, reject) => {
       // grab the middle part of the base64 decoded token
@@ -79,6 +79,36 @@ export default class Api {
       }
 
       if (res.ok) {
+        console.log(res)
+        return resolve(await res.json());
+      }
+      return reject(new Error());
+    });
+  }
+
+  // adds a user plant for the user
+  static addUserPlant(user_plant_params) {
+    return new Promise(async (resolve, reject) => {
+      // grab the middle part of the base64 decoded token
+      let jwt_body = JSON.parse(atob(localStorage.floratoken.split('.')[1]));
+      let res;
+      try {
+        res = await fetch(`${API_ROOT}/users/${jwt_body.user}/user_plants`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.floratoken
+          },
+          body: JSON.stringify(user_plant_params)
+        });
+      } catch (err) {
+        console.log(err.toString());
+        return reject(err);
+      }
+
+      if (res.ok) {
+        console.log(res)
         return resolve(await res.json());
       }
       return reject(new Error());

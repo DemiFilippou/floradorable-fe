@@ -54,7 +54,7 @@ class LoginForm extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to={{pathname: '/home'}} />;
+      return <Redirect to={{pathname: '/'}} />;
     }
     return (
       <form>

@@ -7,14 +7,14 @@ class UserPlant extends React.Component {
   }
 
   render() {
-    return(
-      <UserPlant className="UserPlant">
+    return (
+      <div>
         <img src={plant} />
-        <div class="UserPlantName">
-          this.state.nickname
+        <div className="UserPlantName">
+          {this.props.nickname}
         </div>
-      </UserPlant>
-    )
+      </div>
+    );
   }
 }
 

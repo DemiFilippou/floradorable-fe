@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import Api from '../api.js';
 import UserPlant from '../components/UserPlant.js';
 import './Home.css';
-import { Redirect } from 'react-router-dom'
+import NewPlantForm from './NewPlantForm.js';
+
 export default class Home extends Component {
    constructor(props) {
     super(props);
 
     this.state = {
-      userPlants: ''
+      userPlants: '',
+      loading: true
     };
    }
 
@@ -19,12 +21,22 @@ export default class Home extends Component {
     } catch(err) {
       console.log(err);
     }
-    this.setState({ userPlants: userPlants });
+    this.setState({ userPlants: userPlants, loading: false });
+    console.log(this.state);
   }
 
   render() {
-    if (!localStorage.floratoken) {
-      return <Redirect to={{pathname: '/login'}} />;
+    console.log(this.state);
+    if (this.state.loading) {
+      // TODO: LOADING screen 
+      return null
+    }
+    if (this.state.userPlants.length == 0) {
+      // Add your first plant screen
+      console.log("This user has no plants, let's make one!")
+      return (
+        <NewPlantForm />
+      )
     }
     return (
       <div id="userPlants"> 
