@@ -31,7 +31,7 @@ export default class Home extends Component {
       // TODO: LOADING screen 
       return null
     }
-    if (this.state.userPlants.length == 0) {
+    if (this.state.userPlants.length === 0) {
       // Add your first plant screen
       console.log("This user has no plants, let's make one!")
       return (
