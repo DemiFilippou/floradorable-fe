@@ -27,7 +27,7 @@ class PotSizeField extends React.Component {
 
   render() {
     return (
-      <div className="PotSize">
+      <div className="FieldContainer">
         <h3>How big is your pot?</h3>
         <div className="pots">
           {this.state.pot_sizes.map(size =>

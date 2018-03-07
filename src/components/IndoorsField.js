@@ -27,7 +27,7 @@ class IndoorsField extends React.Component {
 
   render() {
     return (
-      <div className="Indoors">
+      <div className="FieldContainer">
         <h3>Is your plant indoors or outdoors?</h3>
         <div className="indoor_outdoor">
           <img

@@ -1,9 +1,10 @@
 import React from 'react';
 import Api from '../api.js'
 import { Redirect } from 'react-router-dom'
-import PlantTypeField from '../components/PlantTypeField.js'
+import PlantIdField from '../components/PlantIdField.js'
 import PotSizeField from '../components/PotSizeField.js'
 import IndoorsField from '../components/IndoorsField.js'
+import './NewPlantForm.css';
 
 class NewPlantForm extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class NewPlantForm extends React.Component {
 
     this.state = {
       step: 1,
-      plant_type: '',
+      plant_id: '',
       pot_size: '',
       indoors: ''
     };
@@ -40,7 +41,7 @@ class NewPlantForm extends React.Component {
   async submit() {
     let addUserPlantSuccess;
     try {
-      addUserPlantSuccess = await Api.addUserPlant(this.state.formFields);
+      addUserPlantSuccess = await Api.addUserPlant(this.state);
     } catch(err) {
       console.log(err);
     }
@@ -55,7 +56,7 @@ class NewPlantForm extends React.Component {
     console.log(this.state);
     switch (this.state.step) { 
       case 1:
-        return <PlantTypeField fieldValues={this.state}
+        return <PlantIdField fieldValues={this.state}
           nextStep={this.nextStep.bind(this)}
           saveValue={this.saveValue.bind(this)}/>
       case 2:

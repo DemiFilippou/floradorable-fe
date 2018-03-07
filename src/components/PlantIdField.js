@@ -1,8 +1,9 @@
 import React from 'react';
 import plant from '../images/plant.png';
 import ReactDOM from 'react-dom';
+import './PlantIdField.css'
 
-class PlantTypeField extends React.Component {
+class PlantIdField extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -11,23 +12,24 @@ class PlantTypeField extends React.Component {
     e.preventDefault()
 
     // Get values via this.refs
-    let plant_type = ReactDOM.findDOMNode(this.refs.plant_type).value;
-    this.props.saveValue("plant_type", plant_type);
+    let plant_id = ReactDOM.findDOMNode(this.refs.plant_id).value;
+    this.props.saveValue("plant_id", plant_id);
     this.props.nextStep();
   }
 
   render() {
     return (
-      <div className="PlantType">
+      <div className="FieldContainer">
         <h3>What kind of plant is it?</h3>
-        <img src={plant} />
+        <img className="plant-img" src={plant} />
         <input type="text"
-          ref="plant_type"
-          placeholder="Search plants" />
+          ref="plant_id"
+          placeholder="Search plants"
+          autofocus />
         <button onClick={ this.saveAndContinue.bind(this) }>NEXT</button>
       </div>
     )
   }
 }
 
-export default PlantTypeField;
+export default PlantIdField;

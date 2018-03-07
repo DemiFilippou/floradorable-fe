@@ -100,7 +100,7 @@ export default class Api {
             'Content-Type': 'application/json',
             'Authorization': localStorage.floratoken
           },
-          body: JSON.stringify(user_plant_params)
+          body: JSON.stringify({'user_plant': user_plant_params})
         });
       } catch (err) {
         console.log(err.toString());
