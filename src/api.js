@@ -122,7 +122,7 @@ export default class Api {
       // grab the middle part of the base64 decoded token
       let res;
       try {
-        res = await fetch(`${API_ROOT}/search/${query}`, {
+        res = await fetch(`${API_ROOT}/search?${query}`, {
           method: 'GET',
           headers: {
             'Authorization': localStorage.floratoken
@@ -142,7 +142,7 @@ export default class Api {
   }
   
   static searchPlants(query) {
-    return fetch(`${API_ROOT}/search/${query}`, {
+    return fetch(`${API_ROOT}/search?${query}`, {
       method: 'GET',
       headers: {
         'Authorization': localStorage.floratoken

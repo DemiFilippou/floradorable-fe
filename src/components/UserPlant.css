@@ -1,4 +1,13 @@
-.UserPlant {
+.userPlant {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.userPlantImg {
+  border: 10px transparent solid;
+  box-shadow: 0 0 1pt 1pt gray;
+  border-radius: 5px;
+  width: 50%;
 }

@@ -10,7 +10,9 @@ export default class Home extends Component {
 
     this.state = {
       userPlants: '',
-      loading: true
+      userPlant: {},
+      loading: true,
+      showPlant: false
     };
    }
 
@@ -23,6 +25,29 @@ export default class Home extends Component {
     }
     this.setState({ userPlants: userPlants, loading: false });
     console.log(this.state);
+  }
+
+  handleClick(userPlant) {
+    console.log(userPlant);
+    // Use state to overlay the show for this UserPlant
+    this.setState({userPlant: userPlant, showPlant: true});
+  }
+
+  show() {
+    return (
+      <div id="showUserPlant">
+        <UserPlant
+          key = {this.state.userPlant.id}
+          nickname = {this.state.userPlant.nickname}
+          pot_size = {this.state.userPlant.pot_size}
+          water_frequency = {this.state.userPlant.water_frequency}
+          image = {this.state.userPlant.image}
+          indoors = {this.state.userPlant.indoors}
+          last_watered = {this.state.userPlant.last_watered}
+        />
+        <button className="water"> WATER </button>
+    </div>
+    )
   }
 
   render() {
@@ -38,8 +63,11 @@ export default class Home extends Component {
         <NewPlantForm />
       )
     }
+    if (this.state.showPlant) {
+      return this.show();
+    }
     return (
-      <div id="userPlants"> 
+      <div className="userPlants"> 
         {this.state.userPlants? this.state.userPlants.map(up =>
         <UserPlant
           key = {up.id}
@@ -48,7 +76,9 @@ export default class Home extends Component {
           water_frequency = {up.water_frequency}
           image = {up.image}
           indoors = {up.indoors}
-          />
+          last_watered = {up.last_watered}
+          handleClick = {this.handleClick.bind(this, up)}
+         />
         ) : ''}
       </div>
     );

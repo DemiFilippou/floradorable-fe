@@ -1,4 +1,16 @@
-#userPlants {
+.userPlants {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+.showUserPlant {
+  display: flex;
+  justify-content: center;
+}
+
+.water {
+  width: 50%;
 }

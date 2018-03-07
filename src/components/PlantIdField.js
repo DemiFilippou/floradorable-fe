@@ -11,7 +11,7 @@ class PlantIdField extends React.Component {
     super(props);
 
     this.state = {
-      plant: ''
+      value: ''
     }
 
     this.handleChange.bind(this);
@@ -21,7 +21,7 @@ class PlantIdField extends React.Component {
   saveAndContinue(e) {
     e.preventDefault()
 
-    this.props.saveValue("plant_id", this.state.plant.value);
+    this.props.saveValue("plant_id", this.state.value);
     this.props.nextStep();
   }
 
@@ -29,10 +29,10 @@ class PlantIdField extends React.Component {
     //this.refs.plant_id.focus();
   }
 
-  handleChange(selectedOption) {
+  handleChange(value) {
     // Get values via this.refs
-    this.setState({plant: selectedOption});
-    console.log(`Selected: ${selectedOption.label}`);
+    this.setState({value: value});
+    console.log(`Selected: ${this.state}`);
   }
 
   /*
@@ -61,16 +61,16 @@ class PlantIdField extends React.Component {
   }
 
   render() {
-    const value = this.state.plant && this.state.plant.value;
     return (
       <div className="FieldContainer">
         <h3>What kind of plant is it?</h3>
         <img className="plant-img" src={plant} />
         <Async
+          placeholder="Search plants"
           name="plant_id"
           valueKey="id"
           labelKey="name"
-          value={value}
+          value={this.state.value}
           onChange={this.handleChange}
           loadOptions={this.getPlants} 
         />
