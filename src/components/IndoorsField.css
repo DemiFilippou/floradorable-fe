@@ -3,18 +3,29 @@
   justify-content: center;
   display: flex;
   flex-flow: row nowrap;
-  margin: 10
+  margin: 10;
 }
 
-.outdoors .indoors {
+.outdoors {
   display: flex;
   justify-content: center;
   align-self: flex-end;
   margin: 2%;
   width: 40%;
 }
-
-.choseIndoors .choseOutdoors {
+.indoors {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 2%;
+  width: 40%;
+}
+.choseOutdoors {
+  padding: 5px;
+  border: 3px solid grey;
+  border-radius: 5px;
+}
+.choseIndoors {
   padding: 5px;
   border: 3px solid grey;
   border-radius: 5px;

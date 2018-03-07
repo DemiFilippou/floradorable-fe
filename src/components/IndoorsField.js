@@ -27,12 +27,12 @@ class IndoorsField extends React.Component {
 
   render() {
     return (
-      <div className="indoors">
+      <div className="Indoors">
         <h3>Is your plant indoors or outdoors?</h3>
         <div className="indoor_outdoor">
           <img
             src={indoors}
-            className={'indoors' + (this.state.indoors === true ? ' chose_indoors' : '')}
+            className={'indoors' + (this.state.indoors === true ? ' choseIndoors' : '')}
             onClick={this.update.bind(this, true)}
           />
           <img
@@ -40,7 +40,6 @@ class IndoorsField extends React.Component {
             className={'outdoors' + (this.state.indoors === false ? ' choseOutdoors' : '')}
             onClick={this.update.bind(this, false)}
           />
-
         </div>
         <button onClick={ this.saveAndContinue.bind(this) }>NEXT</button>
       </div>

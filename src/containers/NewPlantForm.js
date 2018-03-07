@@ -13,7 +13,7 @@ class NewPlantForm extends React.Component {
       step: 1,
       plant_type: '',
       pot_size: '',
-      inside: ''
+      indoors: ''
     };
   }
 
