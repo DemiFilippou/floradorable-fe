@@ -66,7 +66,8 @@ class NewPlantForm extends React.Component {
       case 3:
         return <IndoorsField fieldValues={this.state}
           previousStep={this.previousStep.bind(this)}
-          submit={this.submit.bind(this)} />
+          submit={this.submit.bind(this)}
+          saveValue={this.saveValue.bind(this)} />
       case 4: // redirect to home page so user can see his/her plant
         return <Redirect to={{pathname: '/'}} />;
     }

@@ -19,10 +19,10 @@ class IndoorsField extends React.Component {
     });
   }
 
-  saveAndContinue(e) {
+  saveAndSubmit(e) {
     e.preventDefault();
     this.props.saveValue("indoors", this.state.indoors);
-    this.props.nextStep();
+    this.props.submit();
   }
 
   render() {
@@ -41,7 +41,7 @@ class IndoorsField extends React.Component {
             onClick={this.update.bind(this, false)}
           />
         </div>
-        <button onClick={ this.saveAndContinue.bind(this) }>NEXT</button>
+        <button onClick={ this.saveAndSubmit.bind(this) }>NEXT</button>
       </div>
     )
   }

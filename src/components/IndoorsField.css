@@ -12,21 +12,26 @@
   align-self: flex-end;
   margin: 2%;
   width: 40%;
+  border: 10px transparent solid;
 }
+
 .indoors {
   display: flex;
   justify-content: center;
   align-self: flex-end;
   margin: 2%;
   width: 40%;
+  border: 10px transparent solid;
 }
+
 .choseOutdoors {
-  padding: 5px;
-  border: 3px solid grey;
+  border: 10px transparent solid;
+  box-shadow: 0 0 1pt 1pt gray;
   border-radius: 5px;
 }
+
 .choseIndoors {
-  padding: 5px;
-  border: 3px solid grey;
+  border: 10px transparent solid;
+  box-shadow: 0 0 1pt 1pt gray;
   border-radius: 5px;
 }
