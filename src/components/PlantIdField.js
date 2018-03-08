@@ -1,63 +1,42 @@
 import React from 'react';
-import plant from '../images/plant.png';
-import Async from 'react-select';
+import PropTypes from 'prop-types';
+import Select from 'react-select';
+import Api from '../api.js';
 import 'react-select/dist/react-select.css';
-import ReactDOM from 'react-dom';
-import './PlantIdField.css'
-import Api from '../api.js'
+import plant from '../images/plant.png';
+import './PlantIdField.css';
 
 class PlantIdField extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      value: ''
-    }
-
-    this.handleChange.bind(this);
-    //this.getPlants.bind(this);
+      value: '',
+    };
   }
 
   saveAndContinue(e) {
-    e.preventDefault()
+    e.preventDefault();
 
-    this.props.saveValue("plant_id", this.state.value);
+    this.props.saveValue('plant_id', this.state.value.id);
     this.props.nextStep();
   }
 
-  componentDidMount() {
-    //this.refs.plant_id.focus();
+  onChange(value) {
+    this.setState({
+      value: value,
+    });
+    console.log(value);
   }
 
-  handleChange(value) {
-    // Get values via this.refs
-    this.setState({value: value});
-    console.log(`Selected: ${this.state}`);
-  }
+  getPlants(input) {
+    if (!input) {
+      return Promise.resolve({options: []});
+    }
 
-  /*
-  async getPlants(query) {
-    let plants;
-    try {
-      plants = await Api.searchPlants(query);
-    } catch(err) {
-      console.log(err);
-    }
-    if (plants) {
-    return { options: plants };
-    }
-  }
-  */
-  
-  getPlants(query) {
-    console.log("time to query for plants");
-    if (!query) {
-			return Promise.resolve({ options: [] });
-		}
-    return Api.searchPlants(query)
-      .then((json) => {
-        return { options: json.items };
-      });
+    return Api.searchPlants(input).then(json => {
+      console.log({options: json});
+      return {options: json};
+    });
   }
 
   render() {
@@ -65,18 +44,16 @@ class PlantIdField extends React.Component {
       <div className="FieldContainer">
         <h3>What kind of plant is it?</h3>
         <img className="plant-img" src={plant} />
-        <Async
-          placeholder="Search plants"
-          name="plant_id"
+        <Select.Async
+          value={this.state.value}
+          onChange={this.onChange.bind(this)}
           valueKey="id"
           labelKey="name"
-          value={this.state.value}
-          onChange={this.handleChange}
-          loadOptions={this.getPlants} 
+          loadOptions={this.getPlants}
         />
-        <button onClick={ this.saveAndContinue.bind(this) }>NEXT</button>
+        <button onClick={this.saveAndContinue.bind(this)}>NEXT</button>
       </div>
-    )
+    );
   }
 }
 

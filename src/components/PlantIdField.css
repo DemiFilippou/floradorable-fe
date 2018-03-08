@@ -1,11 +1,10 @@
-.plant-img + input {
+.plant-img + .Select {
   width: 90%;
 }
 
 .plant-img {
   width: 50%;
+  margin-bottom: 5%;
 }
 
-.Select {
-  width: 90%;
-}
+

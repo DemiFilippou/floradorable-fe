@@ -117,38 +117,15 @@ export default class Api {
 
 
   /****************** Plant functions ******************/
-  static searchPlantsPromise(query) {
-    return new Promise(async (resolve, reject) => {
-      // grab the middle part of the base64 decoded token
-      let res;
-      try {
-        res = await fetch(`${API_ROOT}/search?${query}`, {
-          method: 'GET',
-          headers: {
-            'Authorization': localStorage.floratoken
-          }
-        });
-      } catch (err) {
-        console.log(err.toString());
-        return reject(err);
-      }
-
-      if (res.ok) {
-        console.log(res)
-        return resolve(await res.json());
-      }
-      return reject(new Error());
-    });
-  }
-  
   static searchPlants(query) {
-    return fetch(`${API_ROOT}/search?${query}`, {
+    return fetch(`${API_ROOT}/search?query=${query}`, {
       method: 'GET',
       headers: {
         'Authorization': localStorage.floratoken
       }
     }).then((res) => {
       console.log(res);
-      return res.json()});
+      return res.json()
+    });
   }
 }

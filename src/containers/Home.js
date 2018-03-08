@@ -3,8 +3,9 @@ import Api from '../api.js';
 import UserPlant from '../components/UserPlant.js';
 import './Home.css';
 import NewPlantForm from './NewPlantForm.js';
+import ShowUserPlant from './ShowUserPlant.js';
 
-export default class Home extends Component {
+class Home extends Component {
    constructor(props) {
     super(props);
 
@@ -27,27 +28,14 @@ export default class Home extends Component {
     console.log(this.state);
   }
 
-  handleClick(userPlant) {
+  handleImageClick(userPlant) {
     console.log(userPlant);
     // Use state to overlay the show for this UserPlant
     this.setState({userPlant: userPlant, showPlant: true});
   }
 
-  show() {
-    return (
-      <div id="showUserPlant">
-        <UserPlant
-          key = {this.state.userPlant.id}
-          nickname = {this.state.userPlant.nickname}
-          pot_size = {this.state.userPlant.pot_size}
-          water_frequency = {this.state.userPlant.water_frequency}
-          image = {this.state.userPlant.image}
-          indoors = {this.state.userPlant.indoors}
-          last_watered = {this.state.userPlant.last_watered}
-        />
-        <button className="water"> WATER </button>
-    </div>
-    )
+  handleBackButton() {
+    this.setState({showPlant: false});
   }
 
   render() {
@@ -64,7 +52,18 @@ export default class Home extends Component {
       )
     }
     if (this.state.showPlant) {
-      return this.show();
+      return (
+        <ShowUserPlant
+          key = {this.state.userPlant.id}
+          nickname = {this.state.userPlant.nickname}
+          pot_size = {this.state.userPlant.pot_size}
+          water_frequency = {this.state.userPlant.water_frequency}
+          image = {this.state.userPlant.image}
+          indoors = {this.state.userPlant.indoors}
+          last_watered = {this.state.userPlant.last_watered}
+          handleBackButton = {this.handleBackButton.bind(this)}
+        />
+      )
     }
     return (
       <div className="userPlants"> 
@@ -77,10 +76,12 @@ export default class Home extends Component {
           image = {up.image}
           indoors = {up.indoors}
           last_watered = {up.last_watered}
-          handleClick = {this.handleClick.bind(this, up)}
+          handleClick = {this.handleImageClick.bind(this, up)}
          />
         ) : ''}
       </div>
     );
   }
 }
+
+export default Home;
