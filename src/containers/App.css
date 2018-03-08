@@ -1,6 +1,5 @@
 .App-header {
   text-align: center;
-  margin-top: 5%;
 }
 
 .App-footer {
@@ -8,8 +7,10 @@
 }
 
 
-.Floradorable{
-  font-size: 500%;
+.Floradorable {
+  margin: 5%;
+  font-size: 350%;
+  text-align: left;
 }
 
 .swirls {

@@ -10,4 +10,12 @@
   box-shadow: 0 0 1pt 1pt gray;
   border-radius: 5px;
   width: 50%;
+  margin-top: 5%;
+}
+
+.userPlantProp {
+  margin-top: 2%;
+}
+
+.userPlantWater {
 }

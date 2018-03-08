@@ -1,10 +1,11 @@
 import React from 'react';
 import Api from '../api.js'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 import PlantIdField from '../components/PlantIdField.js'
 import PotSizeField from '../components/PotSizeField.js'
 import IndoorsField from '../components/IndoorsField.js'
 import './NewPlantForm.css';
+import RoundButton from '../components/RoundButton.js';
 
 class NewPlantForm extends React.Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class NewPlantForm extends React.Component {
       step: 1,
       plant_id: '',
       pot_size: '',
-      indoors: ''
+      indoors: '',
+      redirect: false
     };
   }
 
@@ -38,6 +40,11 @@ class NewPlantForm extends React.Component {
     });
   }
 
+  handleClick() {
+    console.log('click');
+    this.setState({redirect: true});
+  }
+
   async submit() {
     let addUserPlantSuccess;
     try {
@@ -54,21 +61,54 @@ class NewPlantForm extends React.Component {
 
   render() {
     console.log(this.state);
+    if (this.state.redirect) {
+      return <Redirect to={{pathname: '/'}} />;
+    }
     switch (this.state.step) { 
       case 1:
-        return <PlantIdField fieldValues={this.state}
-          nextStep={this.nextStep.bind(this)}
-          saveValue={this.saveValue.bind(this)}/>
+        return (
+          <div id="NewPlantForm">
+            <RoundButton 
+              text="x"
+              onClick={this.handleClick.bind(this)}
+            />
+            <PlantIdField
+              fieldValues={this.state}
+              nextStep={this.nextStep.bind(this)}
+              saveValue={this.saveValue.bind(this)}
+            />
+          </div>
+        )
       case 2:
-        return <PotSizeField fieldValues={this.state}
-          nextStep={this.nextStep.bind(this)}
-          previousStep={this.previousStep.bind(this)}
-          saveValue={this.saveValue.bind(this)}/>
+        return (
+          <div id="NewPlantForm">
+            <RoundButton
+              text="x"
+              onClick={this.handleClick.bind(this)}
+            />
+            <PotSizeField
+              fieldValues={this.state}
+              nextStep={this.nextStep.bind(this)}
+              previousStep={this.previousStep.bind(this)}
+              saveValue={this.saveValue.bind(this)}
+            />
+          </div>
+        );
       case 3:
-        return <IndoorsField fieldValues={this.state}
-          previousStep={this.previousStep.bind(this)}
-          submit={this.submit.bind(this)}
-          saveValue={this.saveValue.bind(this)} />
+          return (
+            <div id="NewPlantForm">
+              <RoundButton
+                text="x"
+                onClick={this.handleClick.bind(this)}
+              />
+              <IndoorsField
+                fieldValues={this.state}
+                previousStep={this.previousStep.bind(this)}
+                submit={this.submit.bind(this)}
+                saveValue={this.saveValue.bind(this)}
+              />
+            </div>
+          );
       case 4: // redirect to home page so user can see his/her plant
         return <Redirect to={{pathname: '/'}} />;
     }

@@ -3,7 +3,7 @@ import FieldGroup from './FieldGroup'
 import { Button, HelpBlock } from 'react-bootstrap';
 import './LoginForm.css'
 import Api from '../api.js'
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 // TODO: actually tell user about validation errors.
 
 

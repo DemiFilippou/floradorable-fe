@@ -115,6 +115,33 @@ export default class Api {
     });
   }
 
+  static waterUserPlant(userPlantId) {
+    return new Promise(async (resolve, reject) => {
+      // grab the middle part of the base64 decoded token
+      let jwt_body = JSON.parse(atob(localStorage.floratoken.split('.')[1]));
+      let res;
+      try {
+        res = await fetch(`${API_ROOT}/users/${jwt_body.user}/user_plants/${userPlantId}/water`, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': localStorage.floratoken
+          },
+        });
+      } catch (err) {
+        console.log(err.toString());
+        return reject(err);
+      }
+
+      if (res.ok) {
+        console.log(res)
+        return resolve(await res.json());
+      }
+      return reject(new Error());
+    }); 
+  }
+
 
   /****************** Plant functions ******************/
   static searchPlants(query) {
