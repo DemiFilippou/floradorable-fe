@@ -1,9 +1,13 @@
 .userPlants {
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-start;
-  width: 50%;
+}
+
+.leftUserPlants {
+  flex: 1;
+}
+
+.rightUserPlants {
+  flex: 1;
 }
 
 .showUserPlant {
