@@ -2,7 +2,6 @@
 import { API_ROOT } from './api-config';
 
 export default class Api {
-
   /****************** User functions ******************/
 
   // adds a user
@@ -14,20 +13,20 @@ export default class Api {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(user_params)
         });
       } catch (err) {
-        return reject(err)
+        return reject(err);
       }
 
+      const token_json = await res.json();
       if (res.ok) {
-        const token_json = await res.json();
         localStorage.setItem('floratoken', token_json.token);
         return resolve(true);
       }
-      return reject(new Error());
+      return reject(token_json.message);
     });
   }
 
@@ -40,12 +39,12 @@ export default class Api {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify(user_params)
         });
       } catch (err) {
-        return reject(err)
+        return reject(err);
       }
       console.log(res);
       if (res.ok) {
@@ -70,7 +69,7 @@ export default class Api {
         res = await fetch(`${API_ROOT}/users/${jwt_body.user}/user_plants`, {
           method: 'GET',
           headers: {
-            'Authorization': localStorage.floratoken
+            Authorization: localStorage.floratoken
           }
         });
       } catch (err) {
@@ -79,7 +78,7 @@ export default class Api {
       }
 
       if (res.ok) {
-        console.log(res)
+        console.log(res);
         return resolve(await res.json());
       }
       return reject(new Error());
@@ -98,9 +97,9 @@ export default class Api {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
-            'Authorization': localStorage.floratoken
+            Authorization: localStorage.floratoken
           },
-          body: JSON.stringify({'user_plant': user_plant_params})
+          body: JSON.stringify({ user_plant: user_plant_params })
         });
       } catch (err) {
         console.log(err.toString());
@@ -108,7 +107,7 @@ export default class Api {
       }
 
       if (res.ok) {
-        console.log(res)
+        console.log(res);
         return resolve(await res.json());
       }
       return reject(new Error());
@@ -121,38 +120,72 @@ export default class Api {
       let jwt_body = JSON.parse(atob(localStorage.floratoken.split('.')[1]));
       let res;
       try {
-        res = await fetch(`${API_ROOT}/users/${jwt_body.user}/user_plants/${userPlantId}/water`, {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Authorization': localStorage.floratoken
-          },
-        });
+        res = await fetch(
+          `${API_ROOT}/users/${jwt_body.user}/user_plants/${userPlantId}/water`,
+          {
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authorization: localStorage.floratoken
+            }
+          }
+        );
       } catch (err) {
         console.log(err.toString());
         return reject(err);
       }
 
       if (res.ok) {
-        console.log(res)
+        console.log(res);
         return resolve(await res.json());
       }
       return reject(new Error());
-    }); 
+    });
   }
 
-
   /****************** Plant functions ******************/
+
+  // Performs a fuzzy search of the given query on the Plants table
   static searchPlants(query) {
     return fetch(`${API_ROOT}/search?query=${query}`, {
       method: 'GET',
       headers: {
-        'Authorization': localStorage.floratoken
+        Authorization: localStorage.floratoken
       }
     }).then((res) => {
       console.log(res);
-      return res.json()
+      return res.json();
+    });
+  }
+
+  /****************** Pushy functions ******************/
+
+  // adds a Pushy token
+  // @token: device id
+  static registerDevice(token) {
+    let jwt_body = JSON.parse(atob(localStorage.floratoken.split('.')[1]));
+    return new Promise(async (resolve, reject) => {
+      let res;
+      try {
+        res = await fetch(`${API_ROOT}/users/${jwt_body.user}/pushies`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: localStorage.floratoken
+          },
+          body: JSON.stringify({ pushy: { token: token } })
+        });
+      } catch (err) {
+        return reject(err);
+      }
+
+      if (res.ok) {
+        console.log(res);
+        return resolve(await res.json());
+      }
+      return reject(new Error());
     });
   }
 }
