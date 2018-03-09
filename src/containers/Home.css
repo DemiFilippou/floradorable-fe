@@ -18,3 +18,14 @@
 .water {
   width: 50%;
 }
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout {
+  width: 50%;
+}

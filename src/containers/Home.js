@@ -5,6 +5,7 @@ import './Home.css';
 import NewPlantForm from './NewPlantForm.js';
 import ShowUserPlant from './ShowUserPlant.js';
 import RoundButton from '../components/RoundButton.js';
+import FirstPlant from '../components/FirstPlant.js';
 import { Redirect } from 'react-router-dom';
 
 class Home extends Component {
@@ -45,6 +46,11 @@ class Home extends Component {
     this.setState({ addPlant: true });
   }
 
+  logout() {
+    localStorage.removeItem('floratoken');
+    window.location.reload();
+  }
+
   render() {
     console.log(this.state);
     if (this.state.loading) {
@@ -56,8 +62,15 @@ class Home extends Component {
     }
     if (this.state.userPlants.length === 0) {
       // Add your first plant screen
-      console.log("This user has no plants, let's make one!");
-      return null;
+      return (
+        <div className="Home">
+          <RoundButton text="+" onClick={this.handleAddClick.bind(this)} />
+          <FirstPlant />
+          <button onClick={this.logout} className="logout">
+            LOG OUT
+          </button>
+        </div>
+      );
     }
     if (this.state.showPlant) {
       return (
@@ -78,51 +91,57 @@ class Home extends Component {
     // Go thru the user plants and assign them to the left or right column
     let leftColumn = [];
     let rightColumn = [];
-    for (let i = 0; i < this.state.userPlants.length - 1; i++) {
+    for (let i = 0; i < this.state.userPlants.length; i++) {
       // Even numbers --> left col
       if (i % 2 == 0) {
         leftColumn.push(this.state.userPlants[i]);
       } else {
+        // Odd numbers --> right col
         rightColumn.push(this.state.userPlants[i]);
       }
     }
     return (
-      <div className="userPlants">
-        <RoundButton text="+" onClick={this.handleAddClick.bind(this)} />
-        <div className="leftUserPlants">
-          {leftColumn
-            ? leftColumn.map((up) => (
-                <UserPlant
-                  key={up.id}
-                  nickname={up.nickname}
-                  pot_size={up.pot_size}
-                  water_frequency={up.water_frequency}
-                  image={up.image}
-                  indoors={up.indoors}
-                  last_watered={up.last_watered}
-                  plant={up.plant}
-                  handleClick={this.handleImageClick.bind(this, up)}
-                />
-              ))
-            : ''}
+      <div className="Home">
+        <div className="userPlants">
+          <RoundButton text="+" onClick={this.handleAddClick.bind(this)} />
+          <div className="leftUserPlants">
+            {leftColumn
+              ? leftColumn.map((up) => (
+                  <UserPlant
+                    key={up.id}
+                    nickname={up.nickname}
+                    pot_size={up.pot_size}
+                    water_frequency={up.water_frequency}
+                    image={up.image}
+                    indoors={up.indoors}
+                    last_watered={up.last_watered}
+                    plant={up.plant}
+                    handleClick={this.handleImageClick.bind(this, up)}
+                  />
+                ))
+              : ''}
+          </div>
+          <div className="rightUserPlants">
+            {rightColumn
+              ? rightColumn.map((up) => (
+                  <UserPlant
+                    key={up.id}
+                    nickname={up.nickname}
+                    pot_size={up.pot_size}
+                    water_frequency={up.water_frequency}
+                    image={up.image}
+                    indoors={up.indoors}
+                    last_watered={up.last_watered}
+                    plant={up.plant}
+                    handleClick={this.handleImageClick.bind(this, up)}
+                  />
+                ))
+              : ''}
+          </div>
         </div>
-        <div className="rightUserPlants">
-          {rightColumn
-            ? rightColumn.map((up) => (
-                <UserPlant
-                  key={up.id}
-                  nickname={up.nickname}
-                  pot_size={up.pot_size}
-                  water_frequency={up.water_frequency}
-                  image={up.image}
-                  indoors={up.indoors}
-                  last_watered={up.last_watered}
-                  plant={up.plant}
-                  handleClick={this.handleImageClick.bind(this, up)}
-                />
-              ))
-            : ''}
-        </div>
+        <button onClick={this.logout} className="logout">
+          LOG OUT
+        </button>
       </div>
     );
   }
