@@ -4,8 +4,8 @@ let backendHost;
 const hostname = window && window.location && window.location.hostname;
 
 // TODO : configure hosts
-if (hostname === 'ndube.com') {
-  backendHost = 'https://api.realsite.com';
+if (hostname === 'floradorable.demifili.com') {
+  backendHost = 'https://floradorable.demifili.com:3001';
 } else if (hostname === 'localhost') {
   backendHost = `http://${hostname}:3001`;
 } else {
