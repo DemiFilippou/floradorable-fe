@@ -1,28 +1,32 @@
-.App {
+.App-header {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App-footer {
+  text-align: center;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+
+.Floradorable {
+  margin: 5%;
+  font-size: 350%;
+  text-align: left;
 }
 
-.App-title {
-  font-size: 1.5em;
+.swirls {
+  overflow: hidden;
+  font-size: 200%;
+  font-weight: lighter;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
-.App-intro {
-  font-size: large;
-}
+.Floradorable + .swirls {
+  margin-top: -5%;
+  margin-bottom: 5%;
+ }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+ 
+.App-footer > .swirls {
+  margin-top: 5%;
+ }

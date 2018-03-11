@@ -1,9 +1,9 @@
 import React from 'react';
-import FieldGroup from './FieldGroup'
+import FieldGroup from './FieldGroup';
 import { Button } from 'react-bootstrap';
-import './LoginForm.css'
-import Api from '../api.js'
-import { Redirect } from 'react-router-dom'
+import './LoginForm.css';
+import Api from '../api.js';
+import { Redirect } from 'react-router-dom';
 // TODO: Tell user when login fails
 
 class LoginForm extends React.Component {
@@ -11,12 +11,13 @@ class LoginForm extends React.Component {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-    this.login = this.login.bind(this)
+    this.login = this.login.bind(this);
 
     this.state = {
       email: '',
       password: '',
-      redirect: ''
+      redirect: false,
+      redirectRegister: false
     };
   }
 
@@ -43,18 +44,25 @@ class LoginForm extends React.Component {
     let loginSuccess;
     try {
       loginSuccess = await Api.login({ user: this.state });
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
     if (loginSuccess) {
-      console.log("Logged in");
-      this.setState({redirect: true});
+      console.log('Logged in');
+      this.setState({ redirect: true });
     }
+  }
+
+  redirectToRegister() {
+    this.setState({ redirectRegister: true });
   }
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to={{pathname: '/home'}} />;
+      return <Redirect to={{ pathname: '/' }} />;
+    }
+    if (this.state.redirectRegister) {
+      return <Redirect to={{ pathname: '/register' }} />;
     }
     return (
       <form>
@@ -73,7 +81,7 @@ class LoginForm extends React.Component {
           onChange={this.handleChange}
         />
         <Button onClick={this.login}>LOG IN</Button>
-        <Button>REGISTER</Button>
+        <Button onClick={this.redirectToRegister.bind(this)}>REGISTER</Button>
       </form>
     );
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import Main from '../routes.js'
 
 class App extends Component {
@@ -9,19 +10,8 @@ class App extends Component {
       <div>
         <Header />
         <Main />
+        <Footer />
       </div>
-
-      /*
-      <div className="App">
-        <Header>
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Floradorable</h1>
-        </Header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-      */
     );
   }
 }

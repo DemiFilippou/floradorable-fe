@@ -1,0 +1,8 @@
+.showUserPlant {
+  display: flex;
+  justify-content: center;
+}
+
+.water {
+  width: 50%;
+}

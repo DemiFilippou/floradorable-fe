@@ -1,0 +1,38 @@
+.pots {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10;
+}
+
+.pot {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 2%;
+  width: 1%;
+  border: 10px transparent solid;
+}
+
+.pot:nth-child(1) {
+  flex-grow: 1;
+}
+
+.pot:nth-child(2) {
+  flex-grow: 2;
+}
+
+.pot:nth-child(3) {
+  flex-grow: 3;
+}
+
+.pot:nth-child(4) {
+  flex-grow: 4;
+}
+
+.chosenSize {
+  border: 10px transparent solid;
+  box-shadow: 0 0 1pt 1pt gray;
+  border-radius: 5px;
+}

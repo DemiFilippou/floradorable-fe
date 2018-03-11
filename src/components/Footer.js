@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import '../containers/App.css';
 
-class Header extends Component {
+class Footer extends Component {
   render() {
     return (
-      <header className="App-header">
-        <div className="Floradorable">
-          Floradorable
-        </div>
+      <header className="App-footer">
         <div className="swirls"> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ </div>
       </header>
     );
   }
 }
 
-export default Header;
+export default Footer;
+

@@ -1,0 +1,37 @@
+.indoor_outdoor {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 10;
+}
+
+.outdoors {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 2%;
+  width: 40%;
+  border: 10px transparent solid;
+}
+
+.indoors {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  margin: 2%;
+  width: 40%;
+  border: 10px transparent solid;
+}
+
+.choseOutdoors {
+  border: 10px transparent solid;
+  box-shadow: 0 0 1pt 1pt gray;
+  border-radius: 5px;
+}
+
+.choseIndoors {
+  border: 10px transparent solid;
+  box-shadow: 0 0 1pt 1pt gray;
+  border-radius: 5px;
+}
