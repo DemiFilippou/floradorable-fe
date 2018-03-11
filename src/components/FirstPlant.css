@@ -1,0 +1,22 @@
+.FirstPlant {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+}
+
+.firstPlantText {
+}
+
+.arrow {
+  width: 50%;
+  height: 50%;
+}
+
+.arrow > img {
+  width: 75%;
+}
+
+.FirstPlant + .logout {
+  margin-top: 40%;
+}

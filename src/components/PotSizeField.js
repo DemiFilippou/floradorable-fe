@@ -21,8 +21,11 @@ class PotSizeField extends React.Component {
 
   saveAndContinue(e) {
     e.preventDefault();
-    this.props.saveValue("pot_size", this.state.pot_size);
-    this.props.nextStep();
+    if (this.state.pot_size !== '') {
+      this.props.saveValue("pot_size", this.state.pot_size);
+      this.props.nextStep();
+    }
+  // TODO: else --> error
   }
 
   render() {

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from './containers/Login';
-import Register from './containers/Register';
 import Home from './containers/Home';
+import Register from './containers/Register';
+import NewPlantForm from './containers/NewPlantForm';
 import PrivateRoute from './components/PrivateRoute';
 
 const Main = () => (
@@ -10,6 +11,7 @@ const Main = () => (
     <Switch>
       <Route exact path='/login' component={Login}/>
       <Route exact path='/register' component={Register}/>
+      <PrivateRoute path='/new' component={NewPlantForm} />
       <PrivateRoute path='/' component={Home} />
     </Switch>
   </main>

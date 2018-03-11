@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Select from 'react-select';
 import Api from '../api.js';
 import 'react-select/dist/react-select.css';
@@ -16,9 +15,11 @@ class PlantIdField extends React.Component {
 
   saveAndContinue(e) {
     e.preventDefault();
-
-    this.props.saveValue('plant_id', this.state.value.id);
-    this.props.nextStep();
+    if (this.state.value !== '') {
+      this.props.saveValue('plant_id', this.state.value.id);
+      this.props.nextStep();
+    }
+    //TODO: else: render error msg
   }
 
   onChange(value) {
