@@ -3,7 +3,7 @@ Welcome to my first React project, Floradorable! Floradorable is a simple web ap
 
 
 See it in action [HERE](http://floradorable.demifili.com/)!
-Notifications set up using [Pushy](pushy.me) - a great and easy tool for sending push notifications!
+Notifications set up using [Pushy](https://pushy.me/) - a great and easy tool for sending push notifications!
 
 ## Usage
 So far only tested in Chrome, though Firefox should work. Not optimized for desktop - it will look ugly, I promise.
