@@ -18,4 +18,12 @@
 }
 
 .userPlantWater {
+  width: 50%;
+  justify-content: center;
+  display: flex;
+}
+
+.dropImg {
+  height: 30%;
+  width: 30%;
 }

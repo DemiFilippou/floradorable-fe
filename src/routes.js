@@ -9,15 +9,16 @@ import PrivateRoute from './components/PrivateRoute';
 const Main = () => (
   <main>
     <Switch>
-      <Route exact path='/login' component={Login}/>
-      <Route exact path='/register' component={Register}/>
-      <PrivateRoute path='/new' component={NewPlantForm} />
-      <PrivateRoute path='/' component={Home} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/register" component={Register} />
+      <PrivateRoute exact path="/new" component={NewPlantForm} />
+      <PrivateRoute exact path="/home" component={Home} />
+      <PrivateRoute exact path="/" component={Home} />
     </Switch>
   </main>
-)
+);
 
-  /*
+/*
 const Main = () => (
   <main>
     <Switch>
