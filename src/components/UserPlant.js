@@ -39,7 +39,7 @@ class UserPlant extends React.Component {
       // ex: water every 3 days. havent watered in 1 day.
       // show 1/3 of the total drops as gray
       const grayDropsRatio = daysSinceLastWater / this.props.water_frequency;
-      const grayDrops = grayDropsRatio * numDrops;
+      const grayDrops = Math.round(grayDropsRatio * numDrops);
       const blueDrops = numDrops - grayDrops;
       for (let i = 0; i < blueDrops; i++) {
         drops.push(<img key={i} className="dropImg" src={dropBlue} />);
